@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+.container{
+    position: absolute;
+    margin:auto;
+    padding: 0px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    
+}
+.registrar:hover{
+    color: blue;
+    text-decoration: underline;
+}
+.main{
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    max-width: 60vh;
+    margin: auto;
+   
+    top: 20vh;
+  box-shadow: 1px 1px 1px 1px rgb(230, 230, 230);
+}
+
+@media screen and (max-width: 600px) {
+    .main{
+        background-color: white;
+        font-family: 'Roboto', sans-serif;
+        max-width: auto;
+        margin: auto;
+       
+        top: 20vh;
+      box-shadow: 1px 1px 1px 1px rgb(230, 230, 230);
+    }
+    }

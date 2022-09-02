@@ -1,0 +1,20 @@
+
+<div class="container">
+
+  <mat-card class="main">
+    <h2>Registro de usuario</h2>
+<form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn btn-light" type="submit" >Enviar</button><br><br>
+    <button class="btn btn-danger text-light" (click)="loginWithGoogle()">Registrate con google</button>
+</form>
+  </mat-card>
+
+</div>

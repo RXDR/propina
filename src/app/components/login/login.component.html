@@ -1,0 +1,22 @@
+
+<div class="container">
+
+  <mat-card class="main">
+    <h2>Login</h2>
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn btn-light" type="submit" >Enviar</button><br><br>
+    <button class="btn btn-danger" (click)="loginWithGoogle()">Iniciar con google</button>
+</form> <br>
+
+<span [routerLink]="(['/register'])" class="registrar">Registrate aqui!</span>
+  </mat-card>
+
+</div>
