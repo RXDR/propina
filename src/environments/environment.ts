@@ -5,7 +5,7 @@
 
 
 export const environment = {
-  url_api:  "http://localhost/empleados-main/",
+  url_api:  "http://184.107.46.178:8122/",
 
   firebase: {
     projectId: 'dcm-propina',

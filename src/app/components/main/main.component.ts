@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth,getAuth,onAuthStateChanged,signOut, } from '@angular/fire/auth';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class MainComponent implements OnInit {
 name:any;
+formReg?: any;
   constructor( private auth:Auth,
     private userService: UserService,
     private router: Router) {
@@ -31,11 +33,24 @@ name:any;
      }
 
   ngOnInit() {
+this.buildform();
+    
   }
+  buildform(){
+    this.formReg = new FormGroup({
+      identificacion: new FormControl(),
+      cargo: new FormControl()
+    })
+  }
+  
   logout() {
     this.router.navigate(['/login']);
     alert('si')
     return signOut(this.auth) 
     
   }
+  onSubmit() {
+    console.log(this.formReg?.value)
+  }
+  
 }

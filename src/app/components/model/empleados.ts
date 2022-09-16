@@ -1,9 +1,12 @@
 export interface Empleados {
-    id_empleados:number;
-    nombre:string;
-    apellido:string;
-    identificacion:number;
-    id_cargo:number;
-    
+    apellido:       string;
+    id:             number;
+    idCargo:        IDCargo;
+    identificacion: string;
+    nombre:         string;
 }
 
+export interface IDCargo {
+    cargo: string;
+    id:    number;
+}

@@ -7,10 +7,10 @@
           Registro de puntos 
         </mat-card-title>
         <form action="">
-          <table class="table">
+          <table class="table text-center" style="text-align:center;">
             <thead>
               <tr>
-                <th>Cargo</th>
+                <th>Empleado</th>
                 <th>Puntos</th>
               <th>Estimulos</th>
               </tr>
@@ -19,11 +19,11 @@
             <tbody>
               <tr>
                 <td>
-                  <select  class="form-control">
-                    <option class="form-control">Seleccione..</option>
-                    <option>Administrador</option>
+                  <select  class="form-control" >
+                    <option [value]="emplea.idEmpleado" *ngFor="let emplea of empleado">{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}}  </option>
                   </select>
                 </td>
+                
                 <td>
                   <input type="number" class="form-control" >
                 </td>
@@ -35,8 +35,8 @@
             </tbody>
             <tfoot>
               <tr>
-                <td>
-                  <button class="btn btn-primary">Guardar</button>
+                <td colspan="3">
+                  <button class="btn btn-primary" style="float:right ;">Guardar</button>
                 </td>
               </tr>
             </tfoot>
@@ -51,10 +51,11 @@
       Registro de Incidencias 
     </mat-card-title>
     <form action="">
-      <table class="table">
+      <table class="table" style="text-align:center;">
         <thead>
           <tr>
             <th>Empleado</th>
+            <th>- Puntos</th>
           <th>Incidencia</th>
           </tr>
           
@@ -62,10 +63,14 @@
         <tbody>
           <tr>
             <td>
-              <select name="" id="" class="form-control">
-                <option class="for-control">Seleccione...</option>
+              <select  class="form-control" style="width: 100%;">
+                <option [value]="emplea.idEmpleado" *ngFor="let emplea of empleado">{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}}  </option>
+             
               </select>
             </td>
+              <td>
+                <input type="number" class="form-control" >
+              </td>
             <td>
               <textarea name="" class="form-control"  id="" cols="30" rows="10" placeholder="Reporte de incidencia "></textarea>
             </td>
@@ -73,8 +78,8 @@
         </tbody>
         <tfoot>
           <tr>
-            <td>
-              <button class="btn btn-danger">Guardar</button>
+            <td colspan="3">
+              <button class="btn btn-danger" style="float:right ;">Guardar</button>
             </td>
           </tr>
         </tfoot>

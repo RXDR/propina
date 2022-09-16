@@ -1,8 +1,9 @@
-<h1>Bienvenido!!</h1>
 
 
-<div class="container">
-    <mat-card>
+
+<div class="container" style="margin-top:4vh; top:4vh">
+    <form action="" [formGroup]="formReg" (ngSubmit)="onSubmit()">
+    <mat-card >
         <mat-card-title>
             Asistencia del empleado
         </mat-card-title>
@@ -16,17 +17,25 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="number" class="form-control" placeholder="Ingresar documento de Identidad">
+                        <input type="number" formControlName="identificacion" class="form-control" placeholder="Ingresar documento de Identidad">
                     </td>
                     <td>
-                        <select name="" id="" class="form-control">
+                        <select name="" id="" formControlName="cargo" class="form-control">
                             <option value="" class="form-control">
                                 Seleccione..
                             </option>
+                            <option value="1" class="form-control">Administrador</option>
                         </select>
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"> <button class="btn btn-primary" style="float:right ;">Grabar</button></td>
+                </tr>
+               
+            </tfoot>
         </table>
     </mat-card>
+</form>
 </div>

@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { Cargo } from '../model/cargo';
 import { EmpleadoServicesService } from '../services/empleadoServices.service';
+import { ServiciosSvcService } from '../services/serviciosSvc.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -14,22 +16,20 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./registerEmple.component.css']
 })
 export class RegisterEmpleComponent implements OnInit {
-  formLogin: FormGroup;
+  formLogin?: FormGroup;
   cargo?: any;
   _cargos: any;
+  mostrar=false;
  
   constructor(private dialogService: MatDialog,
     private registrEmpleado:EmpleadoServicesService,
     private auth:Auth,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private serviceSvc:ServiciosSvcService,
+    private formBuild: FormBuilder,
   ) { 
-      this.formLogin = new FormGroup({
-        nombre: new FormControl(),
-        apellido: new FormControl(),
-        identificacion: new FormControl(),
-        id_cargo: new FormControl(),
-      })
+    this.buildForm();
     }
 
     openAddcion() {
@@ -52,15 +52,30 @@ export class RegisterEmpleComponent implements OnInit {
   
   ngOnInit() {
     this.getCargo();
+    this.buildForm();
+    
+  }
+
+  buildForm(){
+    this.formLogin = this.formBuild.group({
+      
+      apellido: [''],
+      id:[null],
+      idCargo:this.formBuild.group({
+        cargo:[''],
+        id:[''],
+      }),
+      identificacion:[''],
+      nombre: [''],
+    })
   }
 
   onSubmit() {
     console.log(this.formLogin.value)
-    this.registrEmpleado.registrEmpleado(this.formLogin.value).subscribe(
-      response=>{
-        console.log(response)
-      }
-    )
+    this.serviceSvc.insertEmpleados(this.formLogin.value).subscribe(res=>{
+      console.log(res)
+      alert('Se grabo empleado')
+    })
   }
 
   logout() {
@@ -73,17 +88,22 @@ export class RegisterEmpleComponent implements OnInit {
       .catch((e) => console.log(e.message));
   }
   
-  getCargo(){
-    this.registrEmpleado.obtenerCargo().subscribe(
-      resp=>{
-        
-        this.cargo=resp
-        console.log(this.cargo+'aqui')
-      }
-      
-    )
-   
-  }
-  
 
+  
+  getCargo(){
+    this.serviceSvc.getCargar().subscribe(resp=>{
+      this.cargo=resp['data']
+      console.log(resp)
+    })
+  }
+  show(){
+    this.mostrar=true
+  }
+ //onchange nivel academico
+ onChangeCargo(event: any): void {
+  const pTemp: Cargo = this.cargo.find((p) => p.id == event.value)!;
+  this.formLogin.get('idCargo').setValue(pTemp)
+
+
+}
 }

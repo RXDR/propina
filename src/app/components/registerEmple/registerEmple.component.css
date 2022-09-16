@@ -1,0 +1,11 @@
+.container{
+    height: max-content;
+}
+
+.mat-card{
+    margin-bottom: 2vh;
+    bottom: 2vh;
+}
+#nuevo .col{
+    margin-top: 1vh;
+}

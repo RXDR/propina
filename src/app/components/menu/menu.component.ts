@@ -16,6 +16,7 @@ import { UserService } from '../services/user.service';
 export class MenuComponent implements OnInit {
 name:any;
 photo:any;
+  longitud: any;
 constructor( private auth:Auth,
   private userService: UserService,
   private router: Router) {
@@ -31,6 +32,7 @@ constructor( private auth:Auth,
         this.photo=photoURL;
         // ...
         console.log(uid)
+        this.longitud=this.photo.length
       } else {
         // User is signed out
         // ...

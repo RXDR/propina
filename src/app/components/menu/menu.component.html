@@ -1,28 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow:2px 2px 2px 2px black solid;">
-  <a class="navbar-brand" href="#"><img src="../../../assets/images/propinas.png" class="icon"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="registro_empleados">Empleados</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="propinas">Propinas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="puntos">Puntos e Incidencias </a>
-      </li>
-    </ul>
-    <span class="navbar-text" style="font-weight:bold;">
-     <img [src]="photo" style="border-radius: 50%;
-     width: 35px;
-     margin-right: 1vh;" alt="Avatar" class="avatar">{{name}}
-    </span>
-    <button class="btn btn-danger " (click)="logout()" style="float:right; margin-left: 1vh;">cerrar sesion</button>
-  </div>
-</nav>
+<mat-card>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow:2px 2px 2px 2px black solid;">
+    <a class="navbar-brand" href="#"><img src="../../../assets/images/propinas.png" class="icon"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="registro_empleados">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="propinas">Propinas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="puntos">Puntos e Incidencias </a>
+        </li>
+      </ul>
+      <span (click)="logout()"  class="navbar-text" style="font-weight:bold; margin-right: 1vh;
+       text-transform: capitalize;">
+       <img [src]="photo" style="border-radius: 50%;
+       width: 35px;margin-right: 2px;" alt="Avatar" class="avatar" *ngIf="longitud>0">{{name}}
+      </span>
+    
+        <img class="exit slide-rotate-ver-right" src="../../../assets/images/exit (1).png" alt=""
+        (click)="logout()" style="float:right;" *ngIf="longitud>0"
+        >
+    </div>
+  </nav>
+</mat-card>
