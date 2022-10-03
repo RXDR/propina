@@ -7,35 +7,33 @@
         <mat-card-title>
             Asistencia del empleado
         </mat-card-title>
+        <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
         <table class="table">
             <thead>
             <tr>
-             <th>Identificacion</th>
-            <th>Cargo</th>
+            <th>Empleado</th>
             </tr>
         </thead>
             <tbody>
                 <tr>
                     <td>
-                        <input type="number" formControlName="identificacion" class="form-control" placeholder="Ingresar documento de Identidad">
-                    </td>
-                    <td>
-                        <select name="" id="" formControlName="cargo" class="form-control">
-                            <option value="" class="form-control">
+                        <select name="" id=""  class="form-control" (change)="onChangeEmpleado($event.target)" >
+                            <option value="" class="form-control" >
                                 Seleccione..
                             </option>
-                            <option value="1" class="form-control">Administrador</option>
+                            <option [value]="empleado.id" class="form-control" *ngFor="let empleado of empleados">{{empleado.nombre}} - {{empleado.idCargo?.cargo}} </option>
                         </select>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2"> <button class="btn btn-primary" style="float:right ;">Grabar</button></td>
+                    <td colspan="2"> <button class="btn btn-primary" style="float:right ;">Insertar</button></td>
                 </tr>
                
             </tfoot>
         </table>
+    </form>
     </mat-card>
 </form>
 </div>

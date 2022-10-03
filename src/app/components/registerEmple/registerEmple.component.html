@@ -1,6 +1,6 @@
-<div class="container">
+<div class="" style=" width:100%; margin-top:5vh">
   <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" novalidate>
-  <div class="row" style="margin-top: 4vh;">
+  <div class="row" style="margin:0 auto ;">
     <div class="col" >
       
       <mat-card >
@@ -25,6 +25,9 @@
           <div class="form-group" >
             <label for="exampleInputPassword1" >Cargo</label>
             <select type="number" class="form-control" formControlName="id" (change)="onChangeCargo($event.target)">
+              <option value="" class="form-control">
+                Seleccione..
+            </option>
             <option  *ngFor="let carg of cargo" [value]="carg.id">{{carg.cargo}}</option>
             
             </select>
@@ -45,49 +48,51 @@
   
       </div>
       <div class="col">
+       
         <mat-card>
           <mat-card-title>
             Consultar empleado
           </mat-card-title>
           <mat-card-content>
             <div class="row">
-              <div class="col">
-                <label for="">Identificación</label>
-                <input class="form-control" type="number" formControlName="identificacion">
+              <div class="col-7">
+                <label for="">Empleados</label>
+                <select class="form-control" type="number" (change)="getConsulta($event.target)">
+                  <option selected>Seleccione...</option>
+                  <option [value]="empleado.id" *ngFor="let empleado of empleados">{{empleado.nombre}}-{{empleado.idCargo?.cargo}}</option>
+                </select>
                 <button class="btn btn-info" style="margin-top:2vh ;" (click)="show()">Consultar</button>
               </div>
               
             </div>
           </mat-card-content>
         </mat-card>
+     
       </div>
+      <div class="col-4">
+        <mat-card style="" *ngIf="mostrar">
+          <table class="table">
+            <thead>
+              <tr>
+              
+                <th>Dias laborados</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                
+                <td>{{dias}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+        
+        </mat-card>
+        
+        </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <mat-card style="" *ngIf="mostrar">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Empleado</th>
-              <th>Estimulos</th>
-              <th>Incidencias</th>
-              <th>Puntos</th>
-              <th>- Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-          </tbody>
-        </table>
-      
-      </mat-card>
-      </div>
-  </div>
+  
+    
+ 
 </form>
 </div>

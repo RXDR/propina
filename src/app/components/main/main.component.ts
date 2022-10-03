@@ -1,7 +1,10 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Auth,getAuth,onAuthStateChanged,signOut, } from '@angular/fire/auth';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Empleado } from '../model/propinasEn';
+import { ServiciosSvcService } from '../services/serviciosSvc.service';
 import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-main',
@@ -11,7 +14,12 @@ import { UserService } from '../services/user.service';
 export class MainComponent implements OnInit {
 name:any;
 formReg?: any;
-  constructor( private auth:Auth,
+  cargo: any;
+  empleados: any;
+  constructor(
+    private formbuilD:FormBuilder,
+    private serviceSvc:ServiciosSvcService,
+    private auth:Auth,
     private userService: UserService,
     private router: Router) {
 
@@ -34,12 +42,16 @@ formReg?: any;
 
   ngOnInit() {
 this.buildform();
+this.getCargo()
+this.getEmpleado()
     
   }
   buildform(){
-    this.formReg = new FormGroup({
-      identificacion: new FormControl(),
-      cargo: new FormControl()
+    this.formReg = this.formbuilD.group({
+      empleado:[''],
+      fechaAsistencia:[],
+      id:[''],
+      
     })
   }
   
@@ -50,7 +62,30 @@ this.buildform();
     
   }
   onSubmit() {
-    console.log(this.formReg?.value)
+    this.serviceSvc.insertAsistencia(this.formReg.value).subscribe(resp=>{
+      console.log(resp)
+      alert("Operación exitosa ")
+    })
   }
   
+  getCargo(){
+    this.serviceSvc.getCargar().subscribe(resp=>{
+      this.cargo=resp['data']
+      console.log(resp)
+    })
+  }
+  getEmpleado(){
+    this.serviceSvc.getEmpleado().subscribe(resp=>{
+      console.log(resp)
+      this.empleados=resp['data']
+    })
+  }
+
+   //onChangeEmpleado
+ onChangeEmpleado(event: any): void {
+  const pTemp: Empleado = this.empleados.find((p) => p.id == event.value)!;
+  this.formReg.get('empleado').setValue(pTemp)
+  console.log(pTemp)
+}
+
 }

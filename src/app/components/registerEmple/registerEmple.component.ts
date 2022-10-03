@@ -20,6 +20,9 @@ export class RegisterEmpleComponent implements OnInit {
   cargo?: any;
   _cargos: any;
   mostrar=false;
+  empleados: any;
+  idEmpleados: any;
+  dias: any;
  
   constructor(private dialogService: MatDialog,
     private registrEmpleado:EmpleadoServicesService,
@@ -39,7 +42,8 @@ export class RegisterEmpleComponent implements OnInit {
           data: {
             
           },
-          width: '4000px',
+          width: '800px',
+          
         });
       
   
@@ -53,7 +57,8 @@ export class RegisterEmpleComponent implements OnInit {
   ngOnInit() {
     this.getCargo();
     this.buildForm();
-    
+    this.getEmpleados();
+ 
   }
 
   buildForm(){
@@ -64,6 +69,7 @@ export class RegisterEmpleComponent implements OnInit {
       idCargo:this.formBuild.group({
         cargo:[''],
         id:[''],
+        puntosCargo:['']
       }),
       identificacion:[''],
       nombre: [''],
@@ -75,6 +81,7 @@ export class RegisterEmpleComponent implements OnInit {
     this.serviceSvc.insertEmpleados(this.formLogin.value).subscribe(res=>{
       console.log(res)
       alert('Se grabo empleado')
+      this.ngOnInit()
     })
   }
 
@@ -105,5 +112,17 @@ export class RegisterEmpleComponent implements OnInit {
   this.formLogin.get('idCargo').setValue(pTemp)
 
 
+}
+getEmpleados(){
+  this.serviceSvc.getEmpleado().subscribe(resp=>{
+    this.empleados=resp['data']
+  })
+}
+getConsulta(event:any){
+  this.idEmpleados=event.value
+  this.serviceSvc.getConsulta(this.idEmpleados).subscribe(resp=>{
+    console.log(resp)
+    this.dias=resp['data']
+  })
 }
 }

@@ -6,7 +6,7 @@
         <mat-card-title>
           Registro de puntos 
         </mat-card-title>
-        <form action="">
+        <form action="" [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
           <table class="table text-center" style="text-align:center;">
             <thead>
               <tr>
@@ -19,24 +19,27 @@
             <tbody>
               <tr>
                 <td>
-                  <select  class="form-control" >
-                    <option [value]="emplea.idEmpleado" *ngFor="let emplea of empleado">{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}}  </option>
+                  <select  class="form-control" (change)="onChangeEmpleado($event.target)" >
+                    <option value="" class="form-control">
+                      Seleccione..
+                  </option>
+                    <option [value]="emplea.id" *ngFor="let emplea of empleado"  >{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}} {{emplea.id}}  </option>
                   </select>
                 </td>
                 
                 <td>
-                  <input type="number" class="form-control" >
+                  <input type="number" class="form-control" formControlName="puntosEstimulo" >
                 </td>
                 
                 <td>
-                  <textarea name="" class="form-control"  id="" cols="30" rows="10" placeholder="Razón de los puntos"></textarea>
+                  <textarea name="" class="form-control" formControlName="estimulo" id="" cols="30" rows="10" placeholder="Razón de los puntos"></textarea>
                 </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <td colspan="3">
-                  <button class="btn btn-primary" style="float:right ;">Guardar</button>
+                  <button type="submit" class="btn btn-primary" style="float:right ;">Guardar</button>
                 </td>
               </tr>
             </tfoot>
@@ -64,7 +67,10 @@
           <tr>
             <td>
               <select  class="form-control" style="width: 100%;">
-                <option [value]="emplea.idEmpleado" *ngFor="let emplea of empleado">{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}}  </option>
+                <option value="" class="form-control">
+                  Seleccione..
+              </option>
+                <option [value]="emplea.id"  *ngFor="let emplea of empleado">{{emplea.nombre}} {{emplea.apellido}} - {{emplea.idCargo?.cargo}}  </option>
              
               </select>
             </td>

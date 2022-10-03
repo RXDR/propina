@@ -1,13 +1,33 @@
-<div class="container">
-  <form action="">
+<div class="container" style="width: 100%;
+padding: 0;
+margin: 0 auto;">
+ 
+  <form [formGroup]="formulario" (ngSubmit)="OnSubmit()">
     <mat-card>
+      <div style=" width:35px; border-radius:3px;padding: 2vh; float: right;" (click)="cerrar()">
+        <mat-icon>close</mat-icon>
+      </div>
       <mat-card-title>
         Nuevo cargo<br>
       </mat-card-title>
       <mat-card-content>
-        <input type="text" class="form-control" placeholder="Ingrese nuevo cargo">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre del cargo</th>
+              <th>Puntos del cargo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" class="form-control" formControlName="cargo" placeholder="Ingrese nuevo cargo"></td>
+              <td><input type="text" class="form-control" formControlName="puntosCargo" placeholder="Ingrese nuevo cargo"></td>
+            </tr>
+          </tbody>
+        </table>
       </mat-card-content>
       <button class="btn btn-primary">Guardar</button>
+     
     </mat-card>
   </form>
   

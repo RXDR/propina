@@ -1,11 +1,73 @@
 <div class="container">
   <mat-card style="margin-top: 5vh;">
     <mat-card-title>
-      Propinas KAVA
+      Propinas KAVA      
     </mat-card-title>
+    <mat-card-content style="margin:auto 0px;margin-top: 2vh; top: 2vh;"><br>
+      <form action="" [formGroup]="formulario2" (ngSubmit)="Submit()">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            MES
+          </th>
+          <th>
+            AÑO
+          </th>
+        <th>
+          Valor
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><select name="" id="" class="form-control" formControlName="mes">
+            <option value="01">ENERO</option>
+            <option value="02">FEBRERO</option>
+            <option value="03">MARZO</option>
+            <option value="04">ABRIL</option>
+            <option value="05">MAYO</option>
+            <option value="06">JUNIO</option>
+            <option value="07">JULIO</option>
+            <option value="08">AGOSTO</option>
+            <option value="09">SEPTIEMBRE</option>
+            <option value="10">OCTUBRE</option>
+            <option value="11">NOVIEMBRE</option>
+            <option value="12">DICIEMBRE</option>
+
+          </select></td>
+          <td>
+            <select name="" id="" class="form-control" formControlName="ano">
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+              <option value="2034">2034</option>
+            </select>
+          </td>
+          <td><input type="number" class="form-control" placeholder="$" formControlName="valor"></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><button class="btn btn-danger" style="float:right;">Insertar</button></td>
+        </tr>
+      </tfoot>
+    </table> 
+  </form>
+    </mat-card-content>
   </mat-card>
-  <mat-card style="width:100%; box-shadow: 1px gray; margin-top: 5vh; top:5vh">
+  <mat-card style="width:100%; box-shadow: 1px gray; margin-top: 5vh; top:2vh;margin-bottom: 5vh; bottom: 2;">
     <table class="table table-light table-hover"  style="width:100%; box-shadow: 1px gray; margin-top: 5vh; top:5vh">
+      
       <thead>
         <tr>
           <th scope="col">No.</th>
@@ -18,14 +80,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
+        <tr *ngFor="let propinaEmpleado of totalEmpleado">
+          <th scope="row" >{{propinaEmpleado.id}}</th>
+          <td>{{propinaEmpleado.empleado.nombre}} {{propinaEmpleado.empleado.apellido}}</td>
+          <td>{{propinaEmpleado.cargo.cargo}}</td>
+          <td>{{propinaEmpleado.puntosMes| number:'1.2-2'}}</td>
+          <td>{{propinaEmpleado.nroAsistencias}}</td>
+          <td>{{propinaEmpleado.valorPropina |number}}</td>
+          <td>{{propinaEmpleado.valorPropina |number}}</td>
           
         </tr>
        
